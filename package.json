@@ -1,0 +1,27 @@
+{
+  "name": "weekend5-employee-salary",
+  "version": "1.0.0",
+  "description": "The lecture itself is broken into four parts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JakeIwen/prime-jquery-intro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JakeIwen/prime-jquery-intro/issues"
+  },
+  "homepage": "https://github.com/JakeIwen/prime-jquery-intro#readme",
+  "dependencies": {
+    "angular": "^1.5.9",
+    "angular-route": "^1.5.9",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jquery": "^3.1.1",
+    "pg": "^6.1.0"
+  }
+}

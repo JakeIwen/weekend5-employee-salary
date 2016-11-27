@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Salary Form</title>
+    <script src="vendor/angular.min.js"></script>
+    <script src="scripts/client-app.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Taviraj" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/styles.css"  />
+  </head>
+  <body ng-app="myApp" ng-controller="SalaryController as salaries" ng-model="salaries">
+    <h1>Employee Salary Form</h1>
+    <div>
+      <form id="einfo">
+        <table id="empInfo">
+          <tr>
+            <td>
+              <label for="eFirstName">First Name:</label>
+              <input type="text" id="eFirstName" name="eFirstName" ng-model="salaries.newEmp.firstName"/>
+            </td>
+            <td>
+              <label for="eLastName">Last Name:</label>
+              <input type="text" id="eLastName" name="eLastName" ng-model="salaries.newEmp.lastName"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="eId">ID Number:</label>
+              <input type="text" id="eId" name="eId" ng-model="salaries.newEmp.id"/>
+            </td>
+            <td>
+              <label for="eJob">Job Title:</label>
+              <input type="text" id="eJob" name="eJob" ng-model="salaries.newEmp.title"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="eSalary">Annual Salary:</label>
+              <input type="text" id="eSalary" name="eSalary" ng-model="salaries.newEmp.salary"/>
+            <td>
+              <input type="submit" value="Submit Employee" ng-click="salaries.addEmployee()"/>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div id="container" >
+      <h2>Employee List</h2>
+      <table id="tableInfo" class="table" >
+        <tr id="tableCats">
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Annual Salary</th>
+        </tr>
+        <tr ng-repeat="employee in salaries.data">
+          <td>{{employee.first_name}}</td>
+          <td>{{employee.last_name}}</td>
+          <td>{{employee.id}}</td>
+          <td>{{employee.title}}</td>
+          <td>${{employee.salary}}</td>
+          <td>
+            <button type="submit" class="btn" id=""ng-click="salaries.deleteEmployee(employee)">DELETE</button>
+          </td>
+        </tr>
+      </table>
+      <h3 id="salaryTitle">Monthly Salary Expenditures:</h3>
+      <span>{{salaries.totalSalary}}</span>
+    </div>
+  </body>
+</html>
