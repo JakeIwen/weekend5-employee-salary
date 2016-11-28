@@ -10,7 +10,6 @@ router.get('/', function(req, res) {
       console.log('connection error: ', err);
       res.sendStatus(500);
     }
-
     client.query('SELECT * FROM salaries ORDER BY id;', function(err, result) {
       done(); // close the connection.
       if(err) {
@@ -19,9 +18,7 @@ router.get('/', function(req, res) {
       }
       console.log(result.rows);
       res.send(result.rows);
-
     });
-
   });
 });
 
@@ -33,14 +30,12 @@ router.post('/', function(req, res) {
       console.log('connection error: ', err);
       res.sendStatus(500);
     }
-
     client.query(
       'INSERT INTO salaries (first_name, last_name, id, title, salary) ' +
       'VALUES ($1, $2, $3, $4, $5)',
       [newEmployee.firstName, newEmployee.lastName, newEmployee.id, newEmployee.title, newEmployee.salary],
       function(err, result) {
         done();
-
         if(err) {
           console.log('insert query error: ', err);
           res.sendStatus(500);
@@ -90,6 +85,7 @@ router.put('/:id', function(req, res) {
       'UPDATE salaries SET active = NOT active' +
       ' WHERE id=$1', [employeeID],
       function(err, result) {
+        done();
         if(err) {
           console.log('update error: ', err);
           res.sendStatus(500);

@@ -1,7 +1,7 @@
 <section ng-model="salaries">
   <div id="container" >
     <h2>Employee List</h2>
-    
+
     <table id="tableInfo" class="table" >
       <tr id="tableCats">
         <th>First Name</th>
@@ -19,7 +19,7 @@
           <td><input ng-model="salaries.newEmp.id"/></td>
           <td><input ng-model="salaries.newEmp.title"/></td>
           <td><input ng-model="salaries.newEmp.salary"/></td>
-          <td></td>
+          <td/>
           <td><button type="submit" class="btn" ng-click="salaries.addEmployee()"/>Submit Employee</button></td>
         </form>
       </tr>
@@ -40,6 +40,9 @@
         </td>
       </tr>
     </table>
-    <h3 id="salaryTitle">Monthly Salary Expenditures: ${{salaries.totalSalary}}</h3>
+    <h3>Monthly Salary Expenditures: ${{salaries.totalSalary}}</h3>
+    <h3>Salary Budget: ${{salaries.currentBudget}}</h3>
+    <h3>{{salaries.budgetMsg}}</h3>
+
   </div>
 </section>

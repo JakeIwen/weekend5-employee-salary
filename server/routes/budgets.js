@@ -11,7 +11,6 @@ router.get('/', function(req, res) {
       console.log('connection error: ', err);
       res.sendStatus(500);
     }
-
     client.query('SELECT * FROM budgets ORDER BY id;', function(err, result) {
       done(); // close the connection.
       if(err) {
@@ -20,9 +19,7 @@ router.get('/', function(req, res) {
       }
       console.log(result.rows);
       res.send(result.rows);
-
     });
-
   });
 });
 
@@ -34,13 +31,11 @@ router.post('/', function(req, res) {
       console.log('connection error: ', err);
       res.sendStatus(500);
     }
-
     client.query(
       'INSERT INTO budgets (date, monthly_budget) ' +
       'VALUES ($1, $2)', [budget.date, budget.amount],
       function(err, result) {
         done();
-
         if(err) {
           console.log('insert query error: ', err);
           res.sendStatus(500);
@@ -48,9 +43,7 @@ router.post('/', function(req, res) {
           res.sendStatus(201);
         }
       });
-
   });
-
 });
 
 

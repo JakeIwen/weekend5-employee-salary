@@ -13,7 +13,7 @@
           <td></td>
           <td></td>
           <td><input type="number" ng-model="budgets.newBudget.amount"/></td>
-          <td><button type="submit" class="btn" ng-click="budgets.addBudget()"/>Submit New Budget</button></td>
+          <td><input type="submit" class="btn" ng-click="budgets.addBudget()"/>Submit New Budget</button></td>
         </form>
       </tr>
       <tr ng-repeat="budget in budgets.data">
@@ -26,3 +26,4 @@
         </td>
       </tr>
     </table>
+    <h3>Newest Salary Budget: ${{budgets.currentBudget}}</h3>
