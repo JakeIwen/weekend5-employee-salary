@@ -6,13 +6,19 @@ h1 {
 h2 {
   color: gray;
 }
-
+.table {
+  font-family: 'Roboto';
+  font-size: 24px;
+}
+.table th {
+  font-weight: bold;
+}
 /*--------------------------------- SLIDER STYLE -----------------------------*/
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 52px;
+  height: 26px;
 }
 
 /* Hide default HTML checkbox */
@@ -34,8 +40,8 @@ h2 {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 18px;
+  width: 18px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -65,12 +71,12 @@ form {display: inline-block;}
   text-align: center;
 }
 /*------------------------------ BUTTON STYLING ------------------------------*/
-button {
+.btn {
   box-shadow:inset 0px 1px 3px 0px #91b8b3;
   background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
   background-color:#768d87;
-  margin: 4px;
+  margin: 1px;
   border-radius:5px;
   border:1px solid #566963;
   display:inline-block;
@@ -79,18 +85,18 @@ button {
   font-family:Arial;
   font-size:15px;
   font-weight:bold;
-  padding:6px 14px;
+  padding:3px 14px;
   text-decoration:none;
   text-shadow:0px -1px 0px #2b665e;
 }
 
-button:hover {
+.btn:hover {
   background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
   background-color:#6c7c7c;
 }
 
-button:active {
+.btn:active {
   position:relative;
   top:1px;
 }

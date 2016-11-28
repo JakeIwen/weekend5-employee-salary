@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
       res.sendStatus(500);
     }
 
-    client.query('SELECT * FROM salaries', function(err, result) {
+    client.query('SELECT * FROM salaries ORDER BY id;', function(err, result) {
       done(); // close the connection.
       if(err) {
         console.log('select query error: ', err);
