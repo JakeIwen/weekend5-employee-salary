@@ -54,6 +54,8 @@
           <th>ID</th>
           <th>Title</th>
           <th>Annual Salary</th>
+          <th>Active Status</th>
+          <th>Delete Employee</th>
         </tr>
         <tr ng-repeat="employee in salaries.data">
           <td>{{employee.first_name}}</td>
@@ -62,12 +64,18 @@
           <td>{{employee.title}}</td>
           <td>${{employee.salary}}</td>
           <td>
-            <button type="submit" class="btn" id=""ng-click="salaries.deleteEmployee(employee)">DELETE</button>
+            <label class="switch">
+              <input type="checkbox"  ng-click="salaries.changeStatus(employee)" ng-checked="employee.active">
+              <div class="slider"></div>
+            </label>
+          </td>
+          <td>
+            <button type="submit" class="btn" ng-click="salaries.deleteEmployee(employee)">DELETE</button>
           </td>
         </tr>
       </table>
-      <h3 id="salaryTitle">Monthly Salary Expenditures:</h3>
-      <span>{{salaries.totalSalary}}</span>
+      <h3 id="salaryTitle">Monthly Salary Expenditures: ${{salaries.totalSalary}}</h3>
+
     </div>
   </body>
 </html>

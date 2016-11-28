@@ -4,6 +4,7 @@ var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/salaries';
 
 router.get('/', function(req, res) {
+  console.log('get salaries SQL query init');
   pg.connect(connectionString, function(err, client, done) {
     if(err) {
       console.log('connection error: ', err);
@@ -16,6 +17,7 @@ router.get('/', function(req, res) {
         console.log('select query error: ', err);
         res.sendStatus(500);
       }
+      console.log(result.rows);
       res.send(result.rows);
 
     });
@@ -77,34 +79,27 @@ router.delete('/:id', function(req, res) {
 
 });
 
-// router.put('/:id', function(req, res) {
-//   bookID = req.params.id;
-//   book = req.body;
-//
-//   console.log('book to update ', book);
-//
-//   pg.connect(connectionString, function(err, client, done) {
-//     if(err) {
-//       console.log('connection error: ', err);
-//       res.sendStatus(500);
-//     }
-//
-//     client.query(
-//       'UPDATE books SET title=$1, author=$2, genre=$3, published=$4, edition=$5, publisher=$6' +
-//       ' WHERE id=$7',
-//       // array of values to use in the query above
-//       [book.title, book.author, book.genre, book.published, book.edition, book.publisher, bookID],
-//       function(err, result) {
-//         if(err) {
-//           console.log('update error: ', err);
-//           res.sendStatus(500);
-//         } else {
-//           res.sendStatus(200);
-//         }
-//       });
-//     }); // close connect
-//
-// }); // end route
+router.put('/:id', function(req, res) {
+  employeeID = req.params.id;
+  pg.connect(connectionString, function(err, client, done) {
+    if(err) {
+      console.log('connection error: ', err);
+      res.sendStatus(500);
+    }
+    client.query(
+      'UPDATE salaries SET active = NOT active' +
+      ' WHERE id=$1', [employeeID],
+      function(err, result) {
+        if(err) {
+          console.log('update error: ', err);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(200);
+        }
+      });
+    });
+
+});
 
 
 module.exports = router;

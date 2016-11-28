@@ -19,10 +19,9 @@ myApp.controller("SalaryController", ["$http", function($http) {
         self.totalSalary = 0;
         for (var i = 0; i < empData.length; i++) {
           self.totalSalary += empData[i].salary/12;
-          console.log(empData[i].salary);
         }
-        self.data = response.data;
-      });
+      self.data = response.data;
+    });
   }
 
   self.addEmployee = function() {
@@ -33,11 +32,22 @@ myApp.controller("SalaryController", ["$http", function($http) {
         getSalaries();
       });
   }
+
+  self.changeStatus = function(employeeObj) {
+    var id = employeeObj.id;
+    console.log('employee object id for update: ', id);
+    console.log('update employee: ', self.changeStatus);
+    $http.put('/salaries/' + id)
+      .then(function(response) {
+        console.log('UPDATE finished. Get salaries again.');
+        getSalaries();
+      });
+  }
   self.deleteEmployee = function(employeeObj) {
     var id = employeeObj.id;
     console.log('employee object id for delete: ', id);
     console.log('delete employee: ', self.deleteEmployee);
-    $http.delete('/salaries/' + id, self.deleteEmployee)
+    $http.delete('/salaries/' + id)
       .then(function(response) {
         console.log('DELETE finished. Get salaries again.');
         getSalaries();

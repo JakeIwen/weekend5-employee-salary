@@ -3,7 +3,8 @@ CREATE TABLE salaries (
   first_name VARCHAR(50),
   last_name VARCHAR(50),
   title VARCHAR(50),
-  salary INTEGER
+  salary INTEGER,
+  active BOOLEAN DEFAULT true
 );
 
 INSERT INTO salaries (id, first_name, last_name, title, salary)
