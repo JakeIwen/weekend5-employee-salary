@@ -1,0 +1,45 @@
+<section ng-model="salaries">
+  <div id="container" >
+    <h2>Employee List</h2>
+    
+    <table id="tableInfo" class="table" >
+      <tr id="tableCats">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Annual Salary</th>
+        <th>Active Status</th>
+        <th></th>
+      </tr>
+      <tr>
+        <form>
+          <td><input ng-model="salaries.newEmp.firstName"/></td>
+          <td><input ng-model="salaries.newEmp.lastName"/></td>
+          <td><input ng-model="salaries.newEmp.id"/></td>
+          <td><input ng-model="salaries.newEmp.title"/></td>
+          <td><input ng-model="salaries.newEmp.salary"/></td>
+          <td></td>
+          <td><button type="submit" class="btn" ng-click="salaries.addEmployee()"/>Submit Employee</button></td>
+        </form>
+      </tr>
+      <tr ng-repeat="employee in salaries.data">
+        <td>{{employee.first_name}}</td>
+        <td>{{employee.last_name}}</td>
+        <td>{{employee.id}}</td>
+        <td>{{employee.title}}</td>
+        <td>${{employee.salary}}</td>
+        <td>
+          <label class="switch">
+            <input type="checkbox"  ng-click="salaries.changeStatus(employee)" ng-checked="employee.active">
+            <div class="slider"></div>
+          </label>
+        </td>
+        <td>
+          <button type="submit" class="btn" ng-click="salaries.deleteEmployee(employee)">DELETE</button>
+        </td>
+      </tr>
+    </table>
+    <h3 id="salaryTitle">Monthly Salary Expenditures: ${{salaries.totalSalary}}</h3>
+  </div>
+</section>

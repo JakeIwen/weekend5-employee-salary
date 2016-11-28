@@ -1,0 +1,28 @@
+<section ng-model="budgets">
+  <div id="container" >
+    <h2>Budgets List</h2>
+
+    <table id="tableInfo" class="table" >
+      <tr>
+        <th>Budget ID</th>
+        <th>Timestamp</th>
+        <th>Budget Value</th>
+      </tr>
+      <tr>
+        <form>
+          <td></td>
+          <td></td>
+          <td><input type="number" ng-model="budgets.newBudget.amount"/></td>
+          <td><button type="submit" class="btn" ng-click="budgets.addBudget()"/>Submit New Budget</button></td>
+        </form>
+      </tr>
+      <tr ng-repeat="budget in budgets.data">
+        <td>{{budget.id}}</td>
+        <td>{{budget.date}}</td>
+        <td>${{budget.monthly_budget}}</td>
+
+        <td>
+          <button type="submit" class="btn" ng-click="budgets.deleteBudget(budget)">DELETE</button>
+        </td>
+      </tr>
+    </table>

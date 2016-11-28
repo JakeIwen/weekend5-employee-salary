@@ -1,5 +1,5 @@
 CREATE TABLE salaries (
-  id integer,
+  id INTEGER UNIQUE,
   first_name VARCHAR(50),
   last_name VARCHAR(50),
   title VARCHAR(50),

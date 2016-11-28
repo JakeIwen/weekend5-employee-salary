@@ -1,6 +1,65 @@
-var myApp = angular.module("myApp", []);
+var app = angular.module('myApp', ['ngRoute']);
 
-myApp.controller("SalaryController", ["$http", function($http) {
+app.config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+    .when('/home', {
+      templateUrl: '/views/templates/home.html',
+      controller: 'SalaryController',
+      controllerAs: 'salaries'
+    })
+    .when('/budgets' ,{
+      templateUrl: '/views/templates/budgets.html',
+      controller: 'BudgetController',
+      controllerAs: 'budgets'
+    })
+    .otherwise({
+      redirectTo: 'home'
+    });
+
+}]);
+
+app.controller("BudgetController", ["$http", function($http) {
+  var self = this;
+  self.newBudget = {};
+  self.salaries = [];
+  getBudgets();
+
+  // read only
+  function getBudgets() {
+    console.log('getBudgets init');
+    $http.get('/budgets')
+      .then(function(response) {
+        console.log(response.data);
+        self.data = response.data;
+    });
+  }
+
+  self.addBudget = function() {
+    self.newBudget.date = new Date();
+    console.log('new budget: ', self.newBudget);
+    $http.post('/budgets', self.newBudget)
+      .then(function(response) {
+        console.log('POST finished. Get budgets again.');
+        getBudgets();
+      });
+  }
+
+  self.deleteBudget = function(budgetObj) {
+    var id = budgetObj.id;
+    console.log('budget object id for delete: ', id);
+    console.log('delete budget: ', self.deleteBudget);
+    $http.delete('/budgets/' + id)
+      .then(function(response) {
+        console.log('DELETE finished. Get budgets again.');
+        getBudgets();
+      });
+  }
+
+}]);
+
+
+
+app.controller("SalaryController", ["$http", function($http) {
   console.log('running');
 
   var self = this;
@@ -18,7 +77,9 @@ myApp.controller("SalaryController", ["$http", function($http) {
         var empData = response.data;
         self.totalSalary = 0;
         for (var i = 0; i < empData.length; i++) {
-          self.totalSalary += empData[i].salary/12;
+          if(empData[i].active == true) {
+            self.totalSalary += empData[i].salary/12;
+          }
         }
       self.data = response.data;
     });
@@ -35,8 +96,8 @@ myApp.controller("SalaryController", ["$http", function($http) {
 
   self.changeStatus = function(employeeObj) {
     var id = employeeObj.id;
-    console.log('employee object id for update: ', id);
-    console.log('update employee: ', self.changeStatus);
+    console.log('budget object id for update: ', id);
+    console.log('update budget: ', self.changeStatus);
     $http.put('/salaries/' + id)
       .then(function(response) {
         console.log('UPDATE finished. Get salaries again.');
@@ -45,8 +106,8 @@ myApp.controller("SalaryController", ["$http", function($http) {
   }
   self.deleteEmployee = function(employeeObj) {
     var id = employeeObj.id;
-    console.log('employee object id for delete: ', id);
-    console.log('delete employee: ', self.deleteEmployee);
+    console.log('budget object id for delete: ', id);
+    console.log('delete budget: ', self.deleteEmployee);
     $http.delete('/salaries/' + id)
       .then(function(response) {
         console.log('DELETE finished. Get salaries again.');
@@ -54,39 +115,4 @@ myApp.controller("SalaryController", ["$http", function($http) {
       });
   }
 
-
-  //
-  // // tied to DOM thru self object
-
-  //
-  // self.clickMe = function(employeeObj) {
-  //   console.log(employeeObj);
-  // }
-  //
-
-  // self.updateEmployee = function(employeeObj) {
-  //   var id = employeeObj.id;
-  //   console.log('update employee: ', employeeObj);
-  //   console.log('self.employee:', self.employee);
-  //   $http.put('/salaries/' + id, employeeObj)
-  //     .then(function(response) {
-  //       console.log('UPDATE finished. Get salaries again.');
-  //       getSalaries();
-  //     });
-  // }
-
 }]);
-
-myApp.filter('unique', function() {
-
- return function (arr, field) {
-   var o = {}, i, l = arr.length, r = [];
-   for(i=0; i<l;i+=1) {
-     o[arr[i][field]] = arr[i];
-   }
-   for(i in o) {
-     r.push(o[i]);
-   }
-   return r;
- };
-})

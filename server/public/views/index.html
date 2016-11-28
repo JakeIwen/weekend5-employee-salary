@@ -5,56 +5,21 @@
     <title>Employee Salary Form</title>
     <script src="vendor/angular.min.js"></script>
     <script src="scripts/client-app.js"></script>
+    <script src="/vendor/angular-route.min.js" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css?family=Taviraj" rel="stylesheet">
     <link rel="stylesheet" href="vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="styles/styles.css"  />
   </head>
-  <body ng-app="myApp" ng-controller="SalaryController as salaries" ng-model="salaries">
-    <h1>Salary Information</h1>
 
-    <div id="container" >
-      <h2>Employee List</h2>
-      <table id="tableInfo" class="table" >
-        <tr id="tableCats">
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Annual Salary</th>
-          <th>Active Status</th>
-          <th></th>
-        </tr>
-        <tr>
-          <form>
-            <td><input ng-model="salaries.newEmp.firstName"/></td>
-            <td><input ng-model="salaries.newEmp.lastName"/></td>
-            <td><input ng-model="salaries.newEmp.id"/></td>
-            <td><input ng-model="salaries.newEmp.title"/></td>
-            <td><input ng-model="salaries.newEmp.salary"/></td>
-            <td></td>
-            <td><button type="submit" class="btn" ng-click="salaries.addEmployee()"/>Submit Employee</button></td>
-          </form>
-        </tr>
-        <tr ng-repeat="employee in salaries.data">
-          <td>{{employee.first_name}}</td>
-          <td>{{employee.last_name}}</td>
-          <td>{{employee.id}}</td>
-          <td>{{employee.title}}</td>
-          <td>${{employee.salary}}</td>
-          <td>
-            <label class="switch">
-              <input type="checkbox"  ng-click="salaries.changeStatus(employee)" ng-checked="employee.active">
-              <div class="slider"></div>
-            </label>
-          </td>
-          <td>
-            <button type="submit" class="btn" ng-click="salaries.deleteEmployee(employee)">DELETE</button>
-          </td>
-        </tr>
-      </table>
-      <h3 id="salaryTitle">Monthly Salary Expenditures: ${{salaries.totalSalary}}</h3>
+  <body ng-app="myApp">
+    <header class="jumbotron text-center"><h1>Salary Information</h1></header>
 
-    </div>
+    <div ng-include="'/views/templates/nav.html'"></div>
+
+    <main ng-view></main>
+
+    <!-- <footer class="text-center" ng-include="'/views/templates/footer.html'"></footer> -->
+
   </body>
 </html>
